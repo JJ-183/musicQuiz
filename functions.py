@@ -31,6 +31,9 @@ def check_password(u_name, p_word):
     elif u_name == "Jules" and p_word == "musicquiz1":
         print("Welcome Jules")
         return "login_ok"
+    elif u_name == "JJ" and p_word == "musicquiz2":
+        print("welcome JJ")
+        return "login_ok"
 
 def login():
     while True:
@@ -54,7 +57,6 @@ def save_score(score, user):
     #Appending the dict to a txt file
     with open('scores.txt', 'a') as fp:
         print(a_dictionary, file=fp)
-        #fp.write(json.dumps(a_dictionary, indent=4))
 
 def read_scores(file):
     d = {}
@@ -94,6 +96,11 @@ def musicQuiz(user):
         final_score = points
         #Saving the final score and the user that played the quiz in a text file
         save_score(final_score, user)
-        print("Ohh look at you knowing the right band!, well done!")
+        if number_of_trys_left == 2:
+            print("well done got it on your first try")
+        elif number_of_trys_left == 1:
+            print("well done got it on your second try")
+        elif number_of_trys_left == 0:
+            print("uh oh you got that on your last try!")
         print("You scored {0} point/s".format(final_score))
         read_scores('scores.txt')
